@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抗原背景图</title>
+    <style>
+        p{
+            font-weight: 800;
+            font-size: large;
+        }
+        .mark-water-text{
+            position: absolute;
+            transform: rotate(30deg);
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        window.onload = function() {
+            const w = 200;
+            const h = 176
+            for (let i = 0; i < window.innerWidth / w; i++) {
+                for (let j = 0; j < window.innerHeight / h; j++) {
+                    let el = document.createElement('div')
+                    el.className = 'mark-water-text'
+                    let text = i * j % 2 == 0 ? '武川路245弄' : ''
+                    el.innerHTML = `
+                        <p>
+                            ${text}5号402
+                        </p>
+                        <p>
+                            ${new Date().toLocaleString()}
+                        </p>
+                    `
+    
+                    el.style.left = i * w + 'px';
+                    el.style.top = j * h  + 'px';
+                    let opacity = Math.random() + 0.3
+                    el.style.opacity = opacity > 1 ? 1 : opacity;
+                    document.body.appendChild(el)
+                }
+            }
+        }
+    </script>
+</body>
+</html>
